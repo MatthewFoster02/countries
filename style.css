@@ -1,0 +1,10 @@
+:root {
+    --clr-bg-dark: hsl(207, 26%, 17%);
+    --clr-other-dark: hsl(209, 23%, 22%);
+    --clr-font-dark: hsl(0, 0%, 100%);
+
+    --clr-bg-light: hsl(0, 0%, 98%);
+    --clr-other-light: hsl(0, 0%, 100%);
+    --clr-font-light: hsl(200, 15%, 8%);
+    --clr-input-light: hsl(0, 0%, 52%);
+}
