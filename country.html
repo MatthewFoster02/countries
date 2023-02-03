@@ -24,38 +24,47 @@
             </div>
         </div>
 
-        <div class="input">
-            <div class="search">
-                <div>
-                    <img src="images/search-dark.svg" alt="" class="icon" id="searchDark">
-                    <img src="images/search-light.svg" alt="" class="icon none" id="searchLight">
+        <div class="back-btn">
+            <button class="link-btn back">
+                <img src="images/arrow-back-dark.svg" alt="" class="icon" id="backDark">
+                <img src="images/arrow-back-light.svg" alt="" class="icon none" id="backLight">
+                <p class="text-btn">Back</p>
+            </button>
+        </div>
+
+        <div class="main-content">
+            <img src="https://flagcdn.com/w320/za.png" alt="" class="sp-flag">
+
+            <div>
+                <p class="name">South Africa</p>
+                <div class="extra-info">
+                    <div class="infos">
+                        <p class="info">Native Name: <span class="value-country">South Africa</span></p>
+                        <p class="info">Population: <span class="value-country">59,308,690</span></p>
+                        <p class="info">Region: <span class="value-country">Africa</span></p>
+                        <p class="info">Sub Region: <span class="value-country">Southern Africa</span></p>
+                        <p class="info">Capital: <span class="value-country">Pretoria</span></p>
+                    </div>
+                    <div class="infos">
+                        <p class="info">Top Level Domain: <span class="value-country">.za</span></p>
+                        <p class="info">Currencies: <span class="value-country">South African rand</span></p>
+                        <p class="info">Languages: <span class="value-country">Afrikaans, English, Southern Ndebele, Southern Sotho, Swati, Tswana, Tsonga, Venda, Xhosa, Zulu</span></p>
+                    </div>
                 </div>
-                <input class="input-space" type="text" placeholder="Search for a country..." id="country-input">
-            </div>
-            <div class="filter">
-                <div class="dropdown">
-                    <button class="dropbtn" id="dropbtn">
-                        Filter by Region
-                        <div>
-                            <img src="images/chevron-down-dark.svg" alt="" class="icon" id="downDark">
-                            <img src="images/chevron-down-light.svg" alt="" class="icon none" id="downLight">
-                        </div>
-                    </button>
-                    <div class="dropdown-content none" id="drop-content">
-                        <a href="#" id="all">All Regions</a>
-                        <a href="#" id="africa">Africa</a>
-                        <a href="#" id="america">America</a>
-                        <a href="#" id="asia">Asia</a>
-                        <a href="#" id="europe">Europe</a>
-                        <a href="#" id="oceania">Oceania</a>
+                <div class="bordering">
+                    <p class="border-text">Border Countries:</p>
+                    <div class="buttons">
+                        <button class="link-btn">Botswana</button>
+                        <button class="link-btn">Lesotho</button>
+                        <button class="link-btn">Mozambique</button>
+                        <button class="link-btn">Namibia</button>
+                        <button class="link-btn">Eswatini</button>
+                        <button class="link-btn">Zimbabwe</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="country-cards" id="parent">
-            <!-- dynmically generated cards go here -->
-        </div>
     </main>
     <script src="main.js"></script>
 </body>

@@ -350,6 +350,118 @@ body {
     }
 }
 
+/*COUNTRY SPECIFIC PAGE DETAILS*/
+.main-content {
+    margin-inline: 1rem;
+}
+
+.back-btn {
+    margin-inline: 1rem;
+}
+
+.link-btn {
+    background-color: var(--other-elements);
+    border: 0;
+    color: var(--font);
+    font-size: 0.75rem;
+    font-weight: var(--fw-light);
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
+    box-shadow: 0px 8px 16px 0px var(--box-shadow);
+    cursor: pointer;
+}
+
+.link-btn:hover {
+    background-color: var(--other-elements-hover);
+}
+
+.back {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sp-flag {
+    width: 100%;
+}
+
+.name {
+    font-size: 1.25rem;
+    font-weight: var(--fw-extra-bold);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.extra-info {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.infos {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.info {
+    font-weight: var(--fw-semi-bold);
+    font-size: 0.875rem;
+}
+
+.value-country {
+    font-weight: var(--fw-light);
+}
+
+.bordering {
+    margin-top: 3rem;
+}
+
+.border-text {
+    font-weight: var(--fw-semi-bold);
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+@media (min-width: 1200px) {
+    .back-btn {
+        margin-inline: 5rem;
+    }
+
+    .back {
+        margin-block: 4rem;
+        font-size: 1.125rem;
+        padding: 0.5rem 2rem;
+    }
+
+    .main-content {
+        margin-inline: 5rem;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .name {
+        margin: 0;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+    }
+
+    .extra-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 5rem;
+    }
+}
+
 
 .none {
     display: none;

@@ -10,11 +10,16 @@ const searchLight = document.getElementById('searchLight');
 const downDark = document.getElementById('downDark');
 const downLight = document.getElementById('downLight');
 
+const backDark = document.getElementById('backDark');
+const backLight = document.getElementById('backLight');
+
 switchTheme.addEventListener('click', () => 
 {
-    console.log('here');
     document.body.classList.toggle('themeLight');
     document.body.classList.toggle('themeDark');
+
+    backLight.classList.toggle('none');
+    backDark.classList.toggle('none');
 
     moonLight.classList.toggle('none');
     moonDark.classList.toggle('none');
