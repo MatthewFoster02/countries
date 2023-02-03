@@ -1,10 +1,12 @@
 :root {
     --clr-bg-dark: hsl(207, 26%, 17%);
     --clr-other-dark: hsl(209, 23%, 22%);
+    --clr-other-dark-hover: rgba(43, 57, 69, 0.7);
     --clr-font-dark: hsl(0, 0%, 100%);
 
     --clr-bg-light: hsl(0, 0%, 98%);
     --clr-other-light: hsl(0, 0%, 100%);
+    --clr-other-light-hover: hsl(0, 3%, 87%);
     --clr-font-light: hsl(200, 15%, 8%);
     --clr-input-light: hsl(0, 0%, 52%);
 
@@ -84,17 +86,21 @@ h3{
 .themeLight {
     --bg: var(--clr-bg-light);
     --other-elements: var(--clr-other-light);
+    --other-elements-hover: var(--clr-other-light-hover);
     --font: var(--clr-font-light);
     --search-font: var(--clr-input-light);
     --filter-font-hover: var(--clr-input-light);
+    --scrollbar: var(--clr-bg-dark);
 }
 
 .themeDark {
     --bg: var(--clr-bg-dark);
     --other-elements: var(--clr-other-dark);
+    --other-elements-hover: var(--clr-other-dark-hover);
     --font: var(--clr-font-dark);
     --search-font: var(--clr-font-dark);
     --filter-font-hover: var(--clr-input-light);
+    --scrollbar: var(--clr-bg-light);
 }
 
 body {
@@ -159,6 +165,7 @@ body {
 .input-space {
     border: 0;
     background-color: transparent;
+    color: var(--font);
 }
 
 ::placeholder {
@@ -220,7 +227,7 @@ body {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:focus .dropbtn,
 .dropdown:hover .dropbtn {
-    background-color: var(--other-elements);
+    background-color: var(--other-elements-hover);
 }
 /*END OF INPUT CSS*/
 
@@ -232,11 +239,22 @@ body {
     gap: 2.5rem;
 }
 
+.row {
+    display: grid;
+    gap: 2.5rem;
+}
+
 .card {
+    width: 15.45rem;
     border-radius: 0.25rem;
     overflow: hidden;
     background-color: var(--other-elements);
     box-shadow: 0px 8px 16px 0px var(--box-shadow);
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: var(--other-elements-hover);
 }
 
 .flag {
@@ -265,8 +283,71 @@ body {
     font-size: 0.875rem;
 }
 
-#value {
+.value {
     font-weight: var(--fw-light);
+}
+
+/* Customising the scrollbar for chrome*/
+::-webkit-scrollbar{
+    width: 0.75rem;
+  }
+  
+  ::-webkit-scrollbar-track{
+    background-color: var(--bg);
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    background-color: var(--scrollbar);
+    border: 0.25rem solid var(--bg);
+    border-radius: 100vmax;
+  }
+
+
+::selection {
+    color: var(--bg);
+    background-color: var(--font);
+}
+
+@media (min-width: 1200px) {
+    .header {
+        padding: 1.5rem 5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-inline: 5rem;
+        margin-block: 3rem;
+    }
+
+    .search,
+    .dropbtn {
+        margin: 0;
+    }
+
+    .search {
+        width: 30rem;
+    }
+
+    .country-cards {
+        margin-inline: 5rem;
+        gap: 5rem;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card,
+    .flag {
+        width: 18rem;
+    }
 }
 
 
