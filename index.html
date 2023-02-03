@@ -11,9 +11,86 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="themeDark">
     <main>
-        <div class="lol">lol</div>
+        <div class="header">
+            <p class="title">Where in the world?</p>
+            <div class="theme-switch" id="switch">
+                <div>
+                    <img src="images/moon-filled-dark.svg" alt="" class="icon" id="moonDark">
+                    <img src="images/moon-outline-light.svg" alt="" class="icon none" id="moonLight">
+                </div>
+                <p class="mode-text">Dark Mode</p>
+            </div>
+        </div>
+
+        <div class="input">
+            <div class="search">
+                <div>
+                    <img src="images/search-dark.svg" alt="" class="icon" id="searchDark">
+                    <img src="images/search-light.svg" alt="" class="icon none" id="searchLight">
+                </div>
+                <input class="input-space" type="text" placeholder="Search for a country...">
+            </div>
+            <div class="filter">
+                <div class="dropdown">
+                    <button class="dropbtn" id="dropbtn">
+                        Filter by Region
+                        <div>
+                            <img src="images/chevron-down-dark.svg" alt="" class="icon" id="downDark">
+                            <img src="images/chevron-down-light.svg" alt="" class="icon none" id="downLight">
+                        </div>
+                    </button>
+                    <div class="dropdown-content none" id="drop-content">
+                        <a href="#" id="africa">Africa</a>
+                        <a href="#" id="america">America</a>
+                        <a href="#" id="asia">Asia</a>
+                        <a href="#" id="europe">Europe</a>
+                        <a href="#" id="oceania">Oceania</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="country-cards">
+            <!-- dynmically generated cards go here -->
+            <div class="card">
+                <img src="https://flagcdn.com/w320/ie.png" alt="" class="flag">
+                <div class="country-info">
+                    <p class="country-name">Ireland</p>
+                    <div class="country-details">
+                        <p class="type">Population: <span id="value">4,994,724</span></p>
+                        <p class="type">Region: <span id="value">Europe</span></p>
+                        <p class="type">Capital: <span id="value">Dublin</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://flagcdn.com/w320/us.png" alt="" class="flag">
+                <div class="country-info">
+                    <p class="country-name">United States of America</p>
+                    <div class="country-details">
+                        <p class="type">Population: <span id="value">329,484,123</span></p>
+                        <p class="type">Region: <span id="value">Americas</span></p>
+                        <p class="type">Capital: <span id="value">Washington, D.C.</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://flagcdn.com/w320/ch.png" alt="" class="flag">
+                <div class="country-info">
+                    <p class="country-name">Switzerland</p>
+                    <div class="country-details">
+                        <p class="type">Population: <span id="value">8,636,896</span></p>
+                        <p class="type">Region: <span id="value">Europe</span></p>
+                        <p class="type">Capital: <span id="value">Bern</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+    <script src="main.js"></script>
 </body>
 </html>
