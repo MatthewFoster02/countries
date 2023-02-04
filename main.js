@@ -214,7 +214,7 @@ function displayData(countriesData)
             capital.innerHTML = 'Capital: ';
             populationValue.innerHTML = numberWithCommas(country['population']);
             regionValue.innerHTML = country['region'];
-            capitalValue.innerHTML = country['capital'];
+            country['capital'] == undefined ? capitalValue.innerHTML = 'No Capital' : capitalValue.innerHTML = country['capital'];
     
             // Append all the children in correct order
             population.appendChild(populationValue);
