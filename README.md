@@ -1,5 +1,5 @@
 # Countries of the World
-Where do you live? Find your country, or search for a different and discover more...
+Where do you live? Find your country, or search for a different country and discover more...
 This is a Front End Mentor Challenge, The idea and design concepts are theirs.
 
 Users can:
