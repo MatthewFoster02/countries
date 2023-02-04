@@ -157,6 +157,13 @@ function cleanCountryNames(countries)
             case 'Venezuela (Bolivarian Republic of)':
                 country.name = 'Venezuela';
                 break;
+            case 'Czech Republic':
+                country.name = 'Czechia';
+                country.nativeName = country.nativeName.substring(0, 5);
+                break;
+            case 'Swaziland':
+                country.name = 'Eswatini';
+                break;
         }
     });
     return countries;
