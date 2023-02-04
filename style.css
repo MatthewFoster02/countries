@@ -120,6 +120,8 @@ body {
     background-color: var(--other-elements);
     font-weight: var(--fw-semi-bold);
     box-shadow: 0px 8px 16px 0px var(--box-shadow);
+    position: sticky;
+    top: 0;
 }
 
 .title {
