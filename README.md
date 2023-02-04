@@ -10,3 +10,5 @@ Users can:
 4. Click on a country to view more details about it on a separate page
 5. On the separate page navigate to bordering countries.
 6. On the separate page return to the main page.
+
+Link to site: https://discover-countries-of-the-world.netlify.app
