@@ -325,7 +325,7 @@ function viewCountry(country, link)
     country_info['capital'] == undefined ? capital.innerHTML = 'No Capital' : capital.innerHTML = country_info['capital'];
     country_info['topLevelDomain'] == undefined || country_info['topLevelDomain'] == '' ? topLevelDomain.innerHTML = 'No Data' : topLevelDomain.innerHTML = country_info['topLevelDomain'];
     // Currencies
-    currencies.innerHTML = getValues(country_info['currencies']);
+    currencies.innerHTML = capitalizeFirstLetter(getValues(country_info['currencies']));
     // Languages
     languages.innerHTML = getValues(country_info['languages']);
     //Bordering countries
@@ -378,6 +378,13 @@ function getValues(values)
         return_ += (value['name'] + ', ');        
     });
     return return_.slice(0, -2);
+}
+
+function capitalizeFirstLetter(currencies)
+{
+    const uppercaseWords = str => str.replace(/^(.)|\s+(.)/g, c => c.toUpperCase());
+
+    return uppercaseWords(currencies);
 }
 
 // Name boolean variable - true if country_ref is the name of the country, false if code
