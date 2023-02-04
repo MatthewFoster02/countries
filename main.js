@@ -74,7 +74,7 @@ oceania.addEventListener('click', () =>
 });
 
 // Filtering by inputted country
-const countryInput = document.getElementById('country-input');
+const countryInput = document.getElementById('country-input'); // Search bar
 
 countryInput.addEventListener('change', (e) =>
 {
@@ -86,15 +86,84 @@ countryInput.addEventListener('change', (e) =>
 countries = [];
 function getCountries()
 {
-    fetch('https://restcountries.com/v3.1/all').then(res => res.json()).then(data =>
+    // Fetched from RESTCountries API endpoint
+    fetch('https://restcountries.com/v2/all').then(res => res.json()).then(data =>
     {
         countries = data;
+        countries = cleanCountryNames(countries);
         displayData(countries);
     });
 }
 getCountries();
 
-let displayData = function displayData(countriesData)
+// Cleaning unnecessary long country names from API
+function cleanCountryNames(countries)
+{
+    countries.forEach(country =>
+    {
+        switch(country.name)
+        {
+            case 'Bolivia (Plurinational State of)':
+                country.name = 'Bolivia';
+                break;
+            case 'Bonaire, Sint Eustatius and Saba':
+                country.name = 'Bonaire';
+                break;
+            case 'Brunei Darussalam':
+                country.name = 'Brunei';
+                break;
+            case 'Cocos (Keeling) Islands':
+                country.name = 'Cocos Islands';
+                break;
+            case 'Falkland Islands (Malvinas)':
+                country.name = 'Falkland Islands';
+                break;
+            case 'Iran (Islamic Republic of)':
+                country.name = 'Iran';
+                break;
+            case "Lao People's Democratic Republic":
+                country.name = 'Laos';
+                break;
+            case 'Micronesia (Federated States of)':
+                country.name = 'Micronesia';
+                break;
+            case 'Moldova (Republic of)':
+                country.name = 'Moldova';
+                break;
+            case "Korea (Democratic People's Republic of)":
+                country.name = 'North Korea';
+                break;
+            case 'Palestine, State of':
+                country.name = 'Palestine';
+                break;
+            case 'Saint Helena, Ascension and Tristan da Cunha':
+                country.name = 'Saint Helena';
+                break;
+            case 'Saint Martin (French part)':
+                country.name = 'Saint Martin';
+                break;
+            case 'Sint Maarten (Dutch part)':
+                country.name = 'Sint Maarten';
+                break;
+            case 'Korea (Republic of)':
+                country.name = 'South Korea';
+                break;
+            case 'Tanzania, United Republic of':
+                country.name = 'Tanzania';
+                break;
+            case 'United Kingdom of Great Britain and Northern Ireland':
+                country.name = 'United Kingdom';
+                break;
+            case 'Venezuela (Bolivarian Republic of)':
+                country.name = 'Venezuela';
+                break;
+        }
+    });
+    return countries;
+}
+
+// Displaying the countries passed in, to the homepage
+function displayData(countriesData)
 {
     // Get the parent div for the country cards.
     let parent = document.getElementById('parent');
@@ -125,6 +194,7 @@ let displayData = function displayData(countriesData)
     
             // Set classes
             card.setAttribute('class', 'card');
+            card.setAttribute('onclick', `viewThisCountry('${country['name']}')`);
             flag.setAttribute('class', 'flag');
             countryInfo.setAttribute('class', 'country-info');
             countryName.setAttribute('class', 'country-name');
@@ -136,9 +206,9 @@ let displayData = function displayData(countriesData)
             regionValue.setAttribute('class', 'value');
             capitalValue.setAttribute('class', 'value');
     
-            // Set the correct flag
+            // Set the correct details for each element
             flag.setAttribute('src', country['flags']['png']);
-            countryName.innerHTML = country['name']['common'];
+            countryName.innerHTML = country['name'];
             population.innerHTML = 'Population: ';
             region.innerHTML = 'Region: ';
             capital.innerHTML = 'Capital: ';
@@ -146,7 +216,7 @@ let displayData = function displayData(countriesData)
             regionValue.innerHTML = country['region'];
             capitalValue.innerHTML = country['capital'];
     
-            // Append all the children correctly
+            // Append all the children in correct order
             population.appendChild(populationValue);
             region.appendChild(regionValue);
             capital.appendChild(capitalValue);
@@ -167,10 +237,12 @@ let displayData = function displayData(countriesData)
     }
 }
 
+// Transforms integer to string and inserts a comma every 3 digits to improve readability
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// Filter the countries based on the selected region
 function displayFilteredCountriesByRegion(region)
 {
     let filteredCountries = [];
@@ -182,20 +254,133 @@ function displayFilteredCountriesByRegion(region)
     displayData(filteredCountries);
 }
 
+// Filters countries by the string inputted in the search bar
 function displayFilteredCountriesByCountry(input)
 {
     let filteredCountries = [];
     countries.forEach(country => 
     {
         let matched = false; // Set to true if searched value is substring of any of the potential spellings of the country names
-        if(country['name']['common'].toLowerCase().includes(input)) matched = true;
+        if(country['name'].toLowerCase().includes(input)) matched = true;
         // Check common other spellings of country name
+        if(country['altSpellings']==undefined) return; // Guard on countries with no alternative spelling
         for(let i = 0; i < country['altSpellings'].length; i++)
         {
             if(country['altSpellings'][i].toLowerCase().includes(input)) matched = true;
         }
-        if(matched) filteredCountries.push(country);
+        if(matched) filteredCountries.push(country); // Only display the country if its name or common names match the input
     });
-    if(filteredCountries.length == 0) return alert('No matching Countries found...');
+    if(filteredCountries.length == 0) return alert('No matching Countries found...'); // Alert user if their search returned no matching countries
     displayData(filteredCountries);
+}
+
+// Functions and code for viewing individual countries and navigating between the individual view and homepage
+const individualCountry = document.getElementById('individual-country');
+const allCountries = document.getElementById('all-countries');
+
+// back function removes the individual country div and replaces it with the homepage content
+function back()
+{
+    individualCountry.classList.add('none');
+    allCountries.classList.remove('none');
+}
+
+// Displays the more detailed country information
+function viewCountry(country, link)
+{
+    // Get country from the data of all countries
+    const country_info = getCountryByNameOrCode(country, link); //Link is true if click comes from link, false if from button
+
+    // All the elements to be filled with the country's details
+    const flag = document.getElementById('flag');
+    const commonName = document.getElementById('name');
+    const nativeName = document.getElementById('native-name');
+    const population = document.getElementById('population-ind');
+    const region = document.getElementById('region-ind');
+    const subRegion = document.getElementById('sub-region');
+    const capital = document.getElementById('capital-ind');
+    const topLevelDomain = document.getElementById('top-level-dom');
+    const currencies = document.getElementById('currencies');
+    const languages = document.getElementById('languages');
+    const bordering = document.getElementById('buttons');
+
+    // Clear all previous values
+
+    // Filling in the details
+    flag.setAttribute('src', country_info['flags']['png']);
+    commonName.innerHTML = country_info['name'];
+    nativeName.innerHTML = country_info['nativeName'];
+    population.innerHTML = numberWithCommas(country_info['population']);
+    region.innerHTML = country_info['region'];
+    country_info['subregion'] == undefined ? subRegion.innerHTML = 'No Sub Region' : subRegion.innerHTML = country_info['subregion'];
+    country_info['capital'] == undefined ? capital.innerHTML = 'No Capital' : capital.innerHTML = country_info['capital'];
+    topLevelDomain.innerHTML = country_info['topLevelDomain'];
+    // Currencies
+    currencies.innerHTML = getValues(country_info['currencies']);
+    // Languages
+    languages.innerHTML = getValues(country_info['languages']);
+    //Bordering countries
+    bordering.innerHTML = "";
+    if(country_info['borders']!=undefined)
+    {
+        country_info['borders'].forEach(country_code =>
+        {
+            const country_name = getCountryByNameOrCode(country_code, false);
+            let btn = document.createElement('button');
+            btn.setAttribute('class', 'link-btn');
+            btn.innerHTML = country_name;
+            btn.setAttribute('onclick', `viewCountry('${country_name}', true)`);
+            bordering.appendChild(btn);     
+        });
+    }
+    else
+    {
+        bordering.innerHTML = 'No Bordering Countries';
+    }
+}
+
+// This function is called from the homepage, so need to change what html is visible before calling viewCountry
+function viewThisCountry(country_name)
+{
+    individualCountry.classList.remove('none');
+    allCountries.classList.add('none');
+    viewCountry(country_name, true);
+}
+
+function fillMultipleCapitals(values)
+{
+    let return_ = ''; // String to be returned
+    if(values == undefined) return 'No Capital';
+    values.forEach(value =>
+    {
+        // Append each value
+        return_ += (value + ', ');
+    });
+    return return_.slice(0, -2); // Removes unnecessary final comma
+}
+
+function getValues(values)
+{
+    let return_ = '';
+    if(values == undefined || values.length == 0) return 'No Data';
+
+    values.forEach(value =>
+    {
+        return_ += (value['name'] + ', ');        
+    });
+    return return_.slice(0, -2);
+}
+
+// Name boolean variable - true if country_ref is the name of the country, false if code
+function getCountryByNameOrCode(country_ref, country_name)
+{
+    let country_return;
+    countries.forEach(country =>
+    {
+        // If we have the country name and it matches with the current country, return the country
+        if(country_name && country['name'] == country_ref) country_return = country;
+        // Otherwise we either do not have a matching country or we are looking at matching the country 3 letter code
+        if(country['alpha3Code'] == country_ref) country_return = country['name'];
+    });
+    return country_return;
 }

@@ -351,11 +351,7 @@ body {
 }
 
 /*COUNTRY SPECIFIC PAGE DETAILS*/
-.main-content {
-    margin-inline: 1rem;
-}
-
-.back-btn {
+.ind-country {
     margin-inline: 1rem;
 }
 
@@ -385,6 +381,7 @@ body {
 
 .sp-flag {
     width: 100%;
+    box-shadow: 0px 8px 16px 0px var(--box-shadow);
 }
 
 .name {
@@ -429,7 +426,7 @@ body {
 }
 
 @media (min-width: 1200px) {
-    .back-btn {
+    .ind-country {
         margin-inline: 5rem;
     }
 
@@ -440,7 +437,6 @@ body {
     }
 
     .main-content {
-        margin-inline: 5rem;
         display: grid;
         justify-content: center;
         align-items: center;
@@ -459,6 +455,7 @@ body {
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
         margin-bottom: 5rem;
+        align-items: start;
     }
 }
 
