@@ -314,7 +314,7 @@ function viewCountry(country, link)
     region.innerHTML = country_info['region'];
     country_info['subregion'] == undefined ? subRegion.innerHTML = 'No Sub Region' : subRegion.innerHTML = country_info['subregion'];
     country_info['capital'] == undefined ? capital.innerHTML = 'No Capital' : capital.innerHTML = country_info['capital'];
-    topLevelDomain.innerHTML = country_info['topLevelDomain'];
+    country_info['topLevelDomain'] == undefined || country_info['topLevelDomain'] == '' ? topLevelDomain.innerHTML = 'No Data' : topLevelDomain.innerHTML = country_info['topLevelDomain'];
     // Currencies
     currencies.innerHTML = getValues(country_info['currencies']);
     // Languages
