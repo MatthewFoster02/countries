@@ -160,9 +160,11 @@ function cleanCountryNames(countries)
             case 'Czech Republic':
                 country.name = 'Czechia';
                 country.nativeName = country.nativeName.substring(0, 5);
+                country['borders'] = ['DEU', 'POL', 'AUT', 'SVK'];
                 break;
             case 'Swaziland':
                 country.name = 'Eswatini';
+                country.nativeName = 'Eswatini';
                 break;
         }
     });
