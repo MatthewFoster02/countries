@@ -262,6 +262,8 @@ body {
 
 .flag {
     width: 15.45rem;
+
+    transition: transform 0.2s ease; /* Ensures smooth scaling */
 }
 
 .country-info {
@@ -370,10 +372,6 @@ body {
     cursor: pointer;
 }
 
-.link-btn:hover {
-    background-color: var(--other-elements-hover);
-}
-
 .back {
     margin-top: 2rem;
     margin-bottom: 3rem;
@@ -385,6 +383,7 @@ body {
 .sp-flag {
     width: 100%;
     box-shadow: 0px 8px 16px 0px var(--box-shadow);
+    border-radius: 0.5rem;
 }
 
 .name {
